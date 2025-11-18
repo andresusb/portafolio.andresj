@@ -13,6 +13,13 @@
   --subtext: #444;
   --card: #f3f3f3;
   --accent: #4A8EFF;
+  --star-color: #ffffff;
+  --star-glow: rgba(255, 255, 255, 0.9);
+  --star-color-alt: #00bfff;
+  --star-glow-alt: rgba(0, 191, 255, 0.8);
+  --star-color-pink: #ffc0cb;
+  --star-glow-pink: rgba(255, 192, 203, 0.8);
+  --galaxy-bg: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
 }
 
 body.dark {
@@ -21,6 +28,17 @@ body.dark {
   --subtext: #bdbdbd;
   --card: #151515;
   --accent: #6aa8ff;
+  --galaxy-bg: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+}
+
+body:not(.dark) {
+  --star-color: #4A8EFF;
+  --star-glow: rgba(74, 142, 255, 0.7);
+  --star-color-alt: #ff6b6b;
+  --star-glow-alt: rgba(255, 107, 107, 0.7);
+  --star-color-pink: #9c27b0;
+  --star-glow-pink: rgba(156, 39, 176, 0.7);
+  --galaxy-bg: radial-gradient(ellipse at bottom, #e0e9ff 0%, #f0f7ff 100%);
 }
 
 body {
@@ -35,6 +53,201 @@ img {
   user-select: none;
   max-width: 100%;
   display: block;
+}
+
+/* ------------------------------
+   GALAXY BACKGROUND
+------------------------------ */
+@keyframes move-twink-back {
+  from { background-position: 0 0; }
+  to { background-position: -5000px 2500px; }
+}
+
+@keyframes move-clouds-back {
+  from { background-position: 0 0; }
+  to { background-position: 10000px 0; }
+}
+
+@keyframes shooting-star {
+  0% {
+    transform: translateX(-100px) translateY(-100px) scale(0.5);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(calc(100vw + 100px)) translateY(calc(100vh + 100px)) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+.galaxy {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+  overflow: hidden;
+  background: var(--galaxy-bg);
+}
+
+.stars, .twinkling, .shooting-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.stars {
+  background: var(--bg) url('https://i.imgur.com/YKY28eT.png') repeat top center;
+  z-index: 1;
+  animation: pulse 2s ease-in-out infinite;
+  opacity: var(--bg) === '#ffffff' ? 0.3 : 0.8;
+}
+
+.twinkling {
+  background: transparent url('https://i.imgur.com/XYMF4ca.png') repeat top center;
+  opacity: 0.6;
+  z-index: 2;
+  animation: move-twink-back 100s linear infinite;
+  opacity: 1;
+  filter: brightness(1.5);
+}
+
+.shooting-stars {
+  z-index: 2;
+  overflow: hidden;
+}
+
+/* Crear múltiples estrellas fugaces */
+.shooting-stars::before,
+.shooting-stars::after,
+.shooting-stars div {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--star-color);
+  box-shadow: 0 0 15px 3px var(--star-glow);
+  animation: shooting-star 8s linear infinite;
+}
+
+/* Estrella fugaz 1 */
+.shooting-stars::before {
+  left: 20%;
+  top: 20%;
+  animation-delay: 0s;
+  animation-duration: 6s;
+  width: 8px;
+  height: 8px;
+  box-shadow: 0 0 20px 5px var(--star-glow);
+}
+
+/* Estrella fugaz 2 */
+.shooting-stars::after {
+  left: 40%;
+  top: 60%;
+  animation-delay: 2s;
+  animation-duration: 8s;
+  width: 5px;
+  height: 5px;
+}
+
+/* Estrella fugaz 3 */
+.shooting-stars div:nth-child(1) {
+  left: 10%;
+  top: 40%;
+  animation-delay: 4s;
+  animation-duration: 7s;
+  width: 6px;
+  height: 6px;
+  box-shadow: 0 0 15px 4px var(--star-glow-alt);
+  background: var(--star-color-alt);
+}
+
+/* Estrella fugaz 4 */
+.shooting-stars div:nth-child(2) {
+  left: 30%;
+  top: 30%;
+  animation-delay: 1s;
+  animation-duration: 9s;
+  width: 4px;
+  height: 4px;
+  box-shadow: 0 0 12px 3px var(--star-glow-pink);
+  background: var(--star-color-pink);
+}
+
+.shooting-stars::after {
+  left: 20%;
+  top: 30%;
+  animation-delay: 3s;
+  animation-duration: 12s;
+}
+
+.shooting-stars::before {
+  left: 30%;
+  top: 50%;
+  animation-delay: 6s;
+  animation-duration: 15s;
+}
+
+.galaxy-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at 20% 20%, rgba(100, 149, 237, 0.3) 0%, transparent 70%),
+    radial-gradient(ellipse at 80% 80%, rgba(138, 43, 226, 0.3) 0%, transparent 70%),
+    radial-gradient(ellipse at 40% 60%, rgba(0, 255, 255, 0.3) 0%, transparent 70%),
+    radial-gradient(ellipse at 60% 30%, rgba(255, 20, 147, 0.2) 0%, transparent 70%);
+  z-index: 3;
+  pointer-events: none;
+  animation: pulse 15s ease-in-out infinite alternate;
+  filter: brightness(1.2);
+}
+
+/* Ajuste para el contenido sobre la galaxia */
+.hero {
+  position: relative;
+  z-index: 2;
+  background: transparent;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(13, 13, 13, 0.8) 0%, rgba(13, 13, 13, 0.4) 100%);
+  z-index: -1;
+}
+
+body:not(.dark) .hero::before {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%);
 }
 
 /* ------------------------------
@@ -123,6 +336,138 @@ img {
 /* ------------------------------
    HERO SECTION
 ------------------------------ */
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 100px 0;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-actions {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(74, 142, 255, 0.3);
+}
+
+.typing-text {
+  font-size: 3.5rem;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.lead {
+  font-size: 1.25rem;
+  color: var(--subtext);
+  margin-bottom: 2rem;
+  max-width: 600px;
+}
+
+.accent {
+  color: var(--accent);
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid var(--accent);
+  animation: blink-caret 0.75s step-end infinite;
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: var(--accent); }
+}
+
+/* Animación de escritura */
+.name-animation {
+  display: inline-block;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  animation: typing 3.5s steps(40, end) forwards, 
+             blink-caret 0.75s step-end 8;
+  animation-delay: 0.5s;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* Asegurarse de que el cursor parpadeante se vea bien */
+.name-animation::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--accent);
+  animation: blink 0.75s step-end infinite;
+}
+
+.accent::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .hero-actions {
+    justify-content: center;
+  }
+  
+  .typing-text {
+    font-size: 2.5rem;
+  }
+  
+  .lead {
+    font-size: 1.1rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 .hero-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
