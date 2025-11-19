@@ -14,12 +14,14 @@
   <meta property="og:type" content="website" />
 
   <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
 </head>
 <body class="dark">
-  <header class="site-header">
+  <header class="site-header" role="banner">
     <div class="container header-inner">
-      <div class="brand"></div>
-      <nav class="nav">
+      <div class="brand" aria-hidden="true">Carlos Andrés</div>
+
+      <nav class="nav" role="navigation" aria-label="Menú principal">
         <a href="#inicio">Inicio</a>
         <a href="#sobre-mi">Sobre mí</a>
         <a href="#habilidades">Habilidades</a>
@@ -28,50 +30,56 @@
         <a href="#experiencia">Experiencia</a>
         <a href="#contacto">Contacto</a>
       </nav>
+
       <div class="controls">
-        <button id="theme-toggle" aria-label="Cambiar tema">🌓</button>
+        <button id="theme-toggle" aria-label="Cambiar tema" title="Cambiar tema">🌓</button>
         <button class="cta" onclick="document.querySelector('#contacto').scrollIntoView({behavior:'smooth'})">Contactar</button>
       </div>
-      <button class="menu-toggle" aria-label="Abrir menú">☰</button>
+
+      <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
     </div>
   </header>
 
   <main>
-    <section id="inicio" class="hero section reveal">
-      <div class="galaxy">
+    <section id="inicio" class="hero section reveal" aria-labelledby="hero-title">
+      <div class="galaxy" aria-hidden="true">
         <div class="stars"></div>
         <div class="twinkling"></div>
         <div class="shooting-stars">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
+          <div class="ss ss-1"></div>
+          <div class="ss ss-2"></div>
+          <div class="ss ss-3"></div>
+          <div class="ss ss-4"></div>
         </div>
         <div class="galaxy-overlay"></div>
       </div>
+
       <div class="container hero-grid">
         <div class="hero-text">
-          <h1 class="typing-text">
+          <h1 id="hero-title" class="typing-text">
             <span class="greeting">Hola, soy</span>
             <div class="name-container">
-              <span class="accent name-animation">
+              <span class="accent name-animation" aria-label="Carlos Andrés Jimenez Murcia">
                 <span class="name-text">Carlos Andrés</span>
-                <span class="last-name">Jimenez Murcia</span>
+                <span class="last-name"> Jimenez Murcia</span>
               </span>
             </div>
           </h1>
+
           <p class="lead">Desarrollador de Software — Construyo soluciones web funcionales y eficientes.
-Creo aplicaciones estables, escalables y enfocadas en resolver necesidades reales de negocio..</p>
+Creo aplicaciones estables, escalables y enfocadas en resolver necesidades reales de negocio.</p>
+
           <div class="hero-actions">
             <a class="btn hero-cta" href="#portafolio">
               <span>Ver proyectos</span>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </a>
+
             <a class="btn hero-cta" href="assets/CV_Carlos_Andres_Jimenez.pdf" download>
               <span>Descargar CV</span>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -79,21 +87,22 @@ Creo aplicaciones estables, escalables y enfocadas en resolver necesidades reale
             </a>
           </div>
         </div>
+
         <div class="hero-media">
           <div class="hero-image-wrapper">
             <img src="assets/perfil_placeholder.png" alt="Foto de Carlos Andrés" class="perfil" />
-            <div class="hero-image-decoration"></div>
+            <div class="hero-image-decoration" aria-hidden="true"></div>
           </div>
         </div>
       </div>
-      <div class="scroll-indicator">
-        <div class="mouse">
-          <div class="wheel"></div>
-        </div>
+
+      <div class="scroll-indicator" aria-hidden="true">
+        <div class="mouse"><div class="wheel"></div></div>
         <div class="arrow"></div>
       </div>
     </section>
 
+    <!-- SOBRE MI -->
     <section id="sobre-mi" class="about section reveal">
       <div class="container">
         <h2>Sobre mí</h2>
@@ -103,44 +112,29 @@ Creo aplicaciones estables, escalables y enfocadas en resolver necesidades reale
             <p>Me apasiona transformar requisitos complejos en interfaces claras y eficientes. Trabajo con metodologías ágiles y me enfoco en la calidad del código y la experiencia del usuario.</p>
             <a class="btn" href="#contacto">Hablemos</a>
           </div>
+
           <div class="about-stats">
-            <div class="stat">
-              <div class="stat-num">8+</div>
-              <div class="stat-label">Meses en Ciprés</div>
-            </div>
-            <div class="stat">
-              <div class="stat-num">3+</div>
-              <div class="stat-label">Años experiencia</div>
-            </div>
-            <div class="stat">
-              <div class="stat-num">20+</div>
-              <div class="stat-label">Proyectos personales</div>
-            </div>
+            <div class="stat"><div class="stat-num">8+</div><div class="stat-label">Meses en Ciprés</div></div>
+            <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Años experiencia</div></div>
+            <div class="stat"><div class="stat-num">20+</div><div class="stat-label">Proyectos personales</div></div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- HABILIDADES -->
     <section id="habilidades" class="skills section reveal">
       <div class="container">
         <h2>Habilidades</h2>
         <div class="skills-grid">
-          <div class="skill">
-            <h4>Backend</h4>
-            <div class="skill-list"><span>Java</span><span>Spring Boot</span><span>Node.js</span></div>
-          </div>
-          <div class="skill">
-            <h4>Web</h4>
-            <div class="skill-list"><span>PHP</span><span>WordPress</span><span>JavaScript</span></div>
-          </div>
-          <div class="skill">
-            <h4>DB & Tools</h4>
-            <div class="skill-list"><span>MySQL</span><span>Git</span><span>Docker (básico)</span></div>
-          </div>
+          <div class="skill"><h4>Backend</h4><div class="skill-list"><span>Java</span><span>Spring Boot</span><span>Node.js</span></div></div>
+          <div class="skill"><h4>Web</h4><div class="skill-list"><span>PHP</span><span>WordPress</span><span>JavaScript</span></div></div>
+          <div class="skill"><h4>DB & Tools</h4><div class="skill-list"><span>MySQL</span><span>Git</span><span>Docker (básico)</span></div></div>
         </div>
       </div>
     </section>
 
+    <!-- PORTAFOLIO -->
     <section id="portafolio" class="portfolio section reveal">
       <div class="container">
         <h2>Proyectos destacados</h2>
@@ -178,42 +172,30 @@ Creo aplicaciones estables, escalables y enfocadas en resolver necesidades reale
       </div>
     </section>
 
+    <!-- TESTIMONIOS -->
     <section id="testimonios" class="testimonials section reveal">
       <div class="container">
         <h2>Testimonios</h2>
         <div class="testi-grid">
-          <blockquote class="testi">
-            <p>“Excelente trabajo entregado a tiempo, muy profesional y claro en la comunicación.”</p>
-            <cite>— Jefe en Ciprés</cite>
-          </blockquote>
-          <blockquote class="testi">
-            <p>“Muy buen manejo de sistemas y solución de problemas en la intranet.”</p>
-            <cite>— Compañero de equipo</cite>
-          </blockquote>
+          <blockquote class="testi"><p>“Excelente trabajo entregado a tiempo, muy profesional y claro en la comunicación.”</p><cite>— Jefe en Ciprés</cite></blockquote>
+          <blockquote class="testi"><p>“Muy buen manejo de sistemas y solución de problemas en la intranet.”</p><cite>— Compañero de equipo</cite></blockquote>
         </div>
       </div>
     </section>
 
+    <!-- EXPERIENCIA -->
     <section id="experiencia" class="experience section reveal">
       <div class="container">
         <h2>Experiencia</h2>
         <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-date">2024 - Presente</div>
-            <div class="timeline-body"><h4>Desarrollador — Ciprés</h4><p>Mantenimiento de intranet, PHP, WordPress y soporte backend.</p></div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">2022 - 2024</div>
-            <div class="timeline-body"><h4>Estudiante — Ingeniería de Software</h4><p>Proyectos académicos y prácticas.</p></div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">2019 - 2022</div>
-            <div class="timeline-body"><h4>Auxiliar de inventarios</h4><p>Gestión y análisis de inventarios en empresa Y.</p></div>
-          </div>
+          <div class="timeline-item"><div class="timeline-date">2024 - Presente</div><div class="timeline-body"><h4>Desarrollador — Ciprés</h4><p>Mantenimiento de intranet, PHP, WordPress y soporte backend.</p></div></div>
+          <div class="timeline-item"><div class="timeline-date">2022 - 2024</div><div class="timeline-body"><h4>Estudiante — Ingeniería de Software</h4><p>Proyectos académicos y prácticas.</p></div></div>
+          <div class="timeline-item"><div class="timeline-date">2019 - 2022</div><div class="timeline-body"><h4>Auxiliar de inventarios</h4><p>Gestión y análisis de inventarios en empresa Y.</p></div></div>
         </div>
       </div>
     </section>
 
+    <!-- CONTACTO -->
     <section id="contacto" class="contact section reveal">
       <div class="container">
         <h2>Contacto</h2>
@@ -227,25 +209,23 @@ Creo aplicaciones estables, escalables y enfocadas en resolver necesidades reale
               <a class="btn btn-outline" href="mailto:andres@example.com">Enviar email</a>
             </div>
           </form>
-          <aside class="contact-info">
+
+          <aside class="contact-info" aria-label="Información de contacto">
             <h3>Datos</h3>
             <p>Email: andres@example.com</p>
             <p>Ubicación: Colombia</p>
-            <p>LinkedIn: <a href="#" target="_blank">Perfil LinkedIn</a></p>
-            <p>GitHub: <a href="https://github.com/andresusb" target="_blank">andresusb</a></p>
+            <p>LinkedIn: <a href="#" target="_blank" rel="noopener">Perfil LinkedIn</a></p>
+            <p>GitHub: <a href="https://github.com/andresusb" target="_blank" rel="noopener">andresusb</a></p>
           </aside>
         </div>
       </div>
     </section>
-
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer" role="contentinfo">
     <div class="container">
       <p>© 2025 Carlos Andrés Jimenez Murcia — Hecho con ❤️</p>
     </div>
   </footer>
-
-<script src="script.js"></script>
 </body>
 </html>
