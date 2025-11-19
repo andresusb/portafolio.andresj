@@ -1,108 +1,322 @@
-/* =========================================================
-   🌌 GALAXIA PROFESIONAL — PARALLAX, ANIMADA, FULL HD
-   ========================================================= */
+/* --------------------------------------------------
+   GLOBAL
+-------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #050505;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+section {
+  padding: 80px 0;
+}
+
+/* --------------------------------------------------
+   NAVBAR
+-------------------------------------------------- */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+nav {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+}
+
+.logo a {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #8a7aff;
+}
+
+/* --------------------------------------------------
+   HERO (GALAXIA + NEON)
+-------------------------------------------------- */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: radial-gradient(circle at 20% 20%, #4020ff33, transparent 60%),
+              radial-gradient(circle at 80% 80%, #00ccff33, transparent 60%),
+              #050505;
+}
+
+/* Galaxia */
 .galaxy {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
   z-index: 0;
   overflow: hidden;
-  pointer-events: none;
-
-  /* Fondo profundo tipo espacio */
-  background: radial-gradient(circle at 50% 20%, #1a1e2b 0%, #090a0f 60%, #05060a 100%);
-  animation: galaxyMove 40s ease-in-out infinite alternate;
+  opacity: 0.8;
 }
 
-/* ⭐ Capa 1 — estrellas pequeñas */
 .stars {
-  position: absolute;
-  inset: 0;
-  background-image: 
-    radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,.9), transparent),
-    radial-gradient(2px 2px at 80% 30%, rgba(255,255,255,.7), transparent),
-    radial-gradient(2px 2px at 30% 70%, rgba(255,255,255,.8), transparent),
-    radial-gradient(2px 2px at 70% 90%, rgba(255,255,255,.75), transparent);
-  opacity: 0.7;
-  animation: starsFloat 90s linear infinite;
-}
-
-/* ⭐ Capa 2 — estrellas más grandes y brillantes */
-.stars-2 {
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(3px 3px at 20% 80%, rgba(0,174,255,0.9), transparent),
-    radial-gradient(3px 3px at 80% 40%, rgba(255,90,220,0.9), transparent),
-    radial-gradient(3px 3px at 40% 20%, rgba(255,255,255,.95), transparent);
+  width: 100%;
+  height: 100%;
+  background: transparent url("https://i.imgur.com/5P4c5QG.png") repeat;
+  animation: starMove 100s linear infinite;
   opacity: 0.45;
-  animation: starsFloatReverse 120s linear infinite;
 }
 
-/* ✨ Nebulosa animada */
-.nebula {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 60% 50%, rgba(120,0,255,0.25) 0%, transparent 60%),
-              radial-gradient(circle at 30% 30%, rgba(0,200,255,0.18) 0%, transparent 60%);
-  filter: blur(50px);
-  animation: nebulaFloat 35s ease-in-out infinite;
+.twinkling {
+  width: 100%;
+  height: 100%;
+  background: transparent url("https://i.imgur.com/5RHR6Ku.png") repeat;
+  animation: twinkle 4s ease-in-out infinite alternate;
+  opacity: 0.6;
 }
 
-/* ✨ Shooting stars premium */
-.shooting-stars {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
+@keyframes starMove {
+  from { background-position: 0 0; }
+  to { background-position: -10000px 5000px; }
 }
+
+@keyframes twinkle {
+  0% { opacity: .4; }
+  100% { opacity: .85; }
+}
+
+/* Shooting stars */
 .shooting-stars div {
   position: absolute;
-  width: 4px;
-  height: 4px;
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(180deg, #00d0ff, transparent);
   border-radius: 50%;
-  background: white;
-  box-shadow: 0 0 12px 4px white;
-  animation: shoot 6s linear infinite;
-  opacity: 0;
+  opacity: 0.7;
+  filter: drop-shadow(0 0 6px #00eaff);
+  animation: shoot 3s linear infinite;
 }
 
-/* 3 shooting stars */
-.shooting-stars div:nth-child(1) { top: 10%; left: -10%; animation-delay: 0s; }
-.shooting-stars div:nth-child(2) { top: 40%; left: -10%; animation-delay: 2s; }
-.shooting-stars div:nth-child(3) { top: 70%; left: -10%; animation-delay: 4s; }
-
-/* =========================================================
-   ANIMACIONES
-   ========================================================= */
-
-/* galaxia moviendo gradiente suave */
-@keyframes galaxyMove {
-  0% { background-position: 50% 20%; }
-  100% { background-position: 48% 22%; }
-}
-
-/* estrellas flotando */
-@keyframes starsFloat {
-  from { transform: translateY(0); }
-  to { transform: translateY(-200px); }
-}
-
-@keyframes starsFloatReverse {
-  from { transform: translateY(0); }
-  to { transform: translateY(200px); }
-}
-
-/* nebulosa moviendo en parallax */
-@keyframes nebulaFloat {
-  0% { transform: translate(0, 0) scale(1); opacity: 0.7; }
-  50% { transform: translate(-40px, -20px) scale(1.1); opacity: 0.9; }
-  100% { transform: translate(30px, 30px) scale(1); opacity: 0.7; }
-}
-
-/* disparo estrella */
 @keyframes shoot {
-  0% { transform: translateX(0) translateY(0) scale(0.5); opacity: 0; }
+  0% { transform: translate(-200px, -200px) rotate(40deg); opacity: 0; }
   10% { opacity: 1; }
-  100% { transform: translate(800px, 200px) scale(1.3); opacity: 0; }
+  100% { transform: translate(1500px, 800px) rotate(40deg); opacity: 0; }
+}
+
+/* Hero Layout */
+.hero-container {
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 20px;
+  margin: auto;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Text */
+.hero-text h1 {
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: white;
+}
+
+.hero-text .accent {
+  display: block;
+  font-size: 4rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #7f6bff, #63d0ff);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.lead {
+  margin-top: 1rem;
+  max-width: 520px;
+  font-size: 1.2rem;
+  color: #d0d0d0;
+}
+
+/* CTA Button */
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 12px 22px;
+  border-radius: 12px;
+  transition: 0.25s ease;
+  color: white;
+  margin-top: 30px;
+  text-decoration: none;
+}
+
+.hero-cta:hover {
+  background: rgba(120, 60, 255, 0.3);
+  border-color: #9d77ff;
+  box-shadow: 0 0 18px #9d77ff55;
+}
+
+/* Hero Image */
+.hero-image-wrapper {
+  position: relative;
+  width: 360px;
+  z-index: 2;
+}
+
+.perfil {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 0 35px #6f4cff88;
+}
+
+/* --------------------------------------------------
+   ABOUT
+-------------------------------------------------- */
+.about {
+  max-width: 1100px;
+  margin: auto;
+  text-align: center;
+}
+
+.about h2 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+}
+
+.about p {
+  max-width: 700px;
+  margin: auto;
+  font-size: 1.1rem;
+  color: #cfcfcf;
+}
+
+/* --------------------------------------------------
+   PROJECTS
+-------------------------------------------------- */
+.projects {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.projects h2 {
+  text-align: center;
+  font-size: 2.8rem;
+  margin-bottom: 40px;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 25px;
+}
+
+.project-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 16px;
+  transition: 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 12px #7d67ff44;
+}
+
+/* --------------------------------------------------
+   CONTACT
+-------------------------------------------------- */
+.contact {
+  max-width: 1100px;
+  margin: auto;
+  text-align: center;
+}
+
+.contact h2 {
+  font-size: 2.8rem;
+  margin-bottom: 15px;
+}
+
+.contact p {
+  color: #cfcfcf;
+  margin-bottom: 20px;
+}
+
+.contact a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 28px;
+  background: #7f6bff;
+  color: white;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.contact a:hover {
+  background: #9e8bff;
+}
+
+/* --------------------------------------------------
+   FOOTER
+-------------------------------------------------- */
+footer {
+  text-align: center;
+  padding: 35px;
+  margin-top: 40px;
+  background: #080808;
+  color: #b5b5b5;
+  font-size: 0.9rem;
+}
+
+/* --------------------------------------------------
+   RESPONSIVE
+-------------------------------------------------- */
+@media (max-width: 920px) {
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .hero-image-wrapper {
+    width: 300px;
+  }
+
+  nav .nav-links {
+    display: none; /* si quieres menú móvil lo hacemos luego */
+  }
 }
