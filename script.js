@@ -1,24 +1,75 @@
-// script.js - theme toggle, reveal, menu, small UX helpers
-// Función para dividir el texto en letras y animarlas
-function animateName() {
-  const nameElement = document.querySelector('.name-text');
-  if (!nameElement) return;
+// script.js - Menú móvil simplificado
+document.addEventListener('DOMContentLoaded', function() {
+  const menuToggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.nav');
+  const body = document.body;
 
-  const text = nameElement.textContent.trim();
-  const letters = text.split('');
-  
-  // Limpiar el contenido actual
-  nameElement.innerHTML = '';
-  
-  // Crear un span para cada letra
-  letters.forEach((letter, index) => {
-    const span = document.createElement('span');
-    span.className = 'name-letter';
-    span.textContent = letter === ' ' ? '\u00A0' : letter;
-    span.style.animation = `fadeIn 0.5s ease-out ${index * 0.1}s forwards`;
-    nameElement.appendChild(span);
-  });
-}
+  if (menuToggle && nav) {
+    // Mostrar/ocultar menú
+    function toggleMenu() {
+      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', !isExpanded);
+      nav.classList.toggle('show');
+      
+      // Bloquear el scroll cuando el menú está abierto
+      if (!isExpanded) {
+        body.style.overflow = 'hidden';
+      } else {
+        body.style.overflow = '';
+      }
+    }
+
+    // Cerrar menú al hacer clic en un enlace
+    function closeMenu() {
+      menuToggle.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('show');
+      body.style.overflow = '';
+    }
+
+    // Manejar clic en el botón del menú
+    menuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    // Cerrar menú al hacer clic en un enlace
+    document.querySelectorAll('.nav a').forEach(link => {
+      link.addEventListener('click', function() {
+        if (window.innerWidth <= 1024) {
+          closeMenu();
+        }
+      });
+    });
+
+    // Cerrar menú al hacer clic fuera de él
+    document.addEventListener('click', function(e) {
+      if (nav.classList.contains('show') && 
+          !nav.contains(e.target) && 
+          e.target !== menuToggle) {
+        closeMenu();
+      }
+    });
+
+    // Manejar cambios de tamaño de pantalla
+    function handleResize() {
+      if (window.innerWidth > 1024) {
+        // En pantallas grandes, asegurarse de que el menú esté visible
+        nav.style.display = 'flex';
+        nav.classList.remove('show');
+        body.style.overflow = '';
+      } else if (menuToggle.getAttribute('aria-expanded') === 'false') {
+        // En móviles, ocultar el menú si está cerrado
+        nav.style.display = 'none';
+      } else {
+        nav.style.display = 'flex';
+      }
+    }
+
+    // Inicializar el menú según el tamaño de pantalla
+    handleResize();
+    window.addEventListener('resize', handleResize);
+  }
+});
 
 document.addEventListener('DOMContentLoaded', () => {
   // Smooth internal links

@@ -231,6 +231,7 @@ img {
 
 .hero-text {
   text-align: left;
+  max-width: 600px;
 }
 
 .hero-actions {
@@ -349,24 +350,45 @@ img {
 
 /* Responsive */
 @media (max-width: 1024px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
   .hero-content {
     grid-template-columns: 1fr;
     text-align: center;
-    gap: 3rem;
+    gap: 2.5rem;
+    padding-top: 2rem;
   }
   
   .hero-text {
     max-width: 100%;
     margin: 0 auto;
+    text-align: center;
   }
   
   .hero-actions {
     justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .hero-actions .btn {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
   }
   
   .hero-image {
     margin: 0 auto;
-    max-width: 80%;
+    max-width: 90%;
+    padding-left: 0;
+    
+    img {
+      max-width: 100%;
+      height: auto;
+    }
   }
 }
 
@@ -603,21 +625,24 @@ img {
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  margin-top: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
   align-items: stretch;
+  align-content: stretch;
 }
 
 .skill-category {
   background: var(--card);
   border-radius: var(--radius-lg);
   padding: 2rem;
+  box-shadow: var(--shadow);
   transition: var(--transition);
   border: 1px solid var(--border);
-  height: 100%;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  min-height: 300px; /* Altura mínima para mantener consistencia */
 }
 
 .skill-category:hover {
@@ -1187,8 +1212,9 @@ img {
 
 .header-inner {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
+  width: 100%;
 }
 
 .brand {
@@ -1210,11 +1236,104 @@ img {
 
 /* Mobile menu */
 .menu-toggle {
-  display: none;
-  font-size: 1.8rem;
+  display: none; /* Oculto por defecto, se muestra en móviles */
   background: none;
   border: none;
   color: var(--text);
+  cursor: pointer;
+  z-index: 1001;
+  padding: 0.5rem;
+  margin-left: auto;
+  transition: background-color 0.2s;
+  border-radius: 4px;
+}
+
+.menu-toggle:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.dark .menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Estilos para el menú de navegación */
+.nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* Estilos para móviles */
+@media (max-width: 1024px) {
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background: var(--card);
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 6rem 2rem 2rem;
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    display: none; /* Oculto por defecto, se muestra con JS */
+  }
+  
+  .nav.show {
+    right: 0;
+    display: flex;
+  }
+  
+  .nav.active {
+    right: 0;
+    display: flex; /* Mostrar cuando está activo */
+  }
+  
+  .nav a {
+    margin: 0;
+    padding: 1.2rem 0;
+    width: 100%;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    display: block;
+    font-size: 1.1rem;
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  
+  .nav a:hover {
+    color: var(--accent);
+  }
+  
+  .controls {
+    margin-left: 1rem;
+  }
+  
+  .cta {
+    display: none;
+  }
 }
 
 /* Controls (theme + CTA) */
@@ -1360,6 +1479,50 @@ img {
   height: 4px;
   background: var(--accent);
   border-radius: 2px;
+}
+
+@media (max-width: 1024px) {
+  .menu-toggle {
+    display: block;
+  }
+  
+  .nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background: var(--card);
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 6rem 2rem 2rem;
+    transition: transform 0.3s ease-in-out;
+    z-index: 100;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nav.active {
+    transform: translateX(-100%);
+  }
+  
+  .nav a {
+    padding: 1rem 0;
+    width: 100%;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    display: block;
+    font-size: 1.1rem;
+  }
+  
+  .controls {
+    margin-left: auto;
+    margin-right: 1rem;
+  }
+  
+  .cta {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
@@ -1652,4 +1815,105 @@ img {
 .zoom-in.active {
   transform: translateX(0) scale(1);
   opacity: 1;
+}
+
+/* ====================================
+   ESTILOS RESPONSIVOS PARA MÓVILES
+   ==================================== */
+
+/* 1. Reset para móviles */
+@media (max-width: 768px) {
+  /* Asegurar que el body ocupe todo el ancho */
+  html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Contenedor principal */
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 15px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  /* Ajustar secciones */
+  section {
+    width: 100%;
+    padding: 1.5rem 0;
+    box-sizing: border-box;
+  }
+
+  /* Ajustar grid de habilidades */
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0;
+  }
+
+  /* Ajustar tarjetas de proyectos */
+  .project-card {
+    width: 100%;
+    margin: 0 0 2rem 0;
+  }
+
+  /* Ajustar grid de testimonios */
+  .testi-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Asegurar que las imágenes no desborden */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Ajustar padding en móviles */
+  .project-body, 
+  .testimonial-content {
+    padding: 1rem;
+  }
+
+  /* Ajustar tamaños de fuente */
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.5rem; }
+  p { font-size: 1rem; }
+
+  /* Ajustar botones */
+  .btn {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* 2. Ajustes específicos para pantallas muy pequeñas */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 12px;
+  }
+
+  section {
+    padding: 1.25rem 0;
+  }
+
+  /* Ajustar aún más los márgenes en móviles pequeños */
+  .section-title {
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title h2 {
+    font-size: 1.5rem;
+  }
+
+  .section-title p {
+    font-size: 0.9rem;
+  }
 }

@@ -19,8 +19,17 @@
 <body class="dark">
   <header class="site-header">
     <div class="container header-inner">
-      <div class="brand"></div>
-      <nav class="nav">
+      
+      <button class="menu-toggle p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
+        <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-gray-600 dark:text-gray-300" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <span class="sr-only">Menú</span>
+      </button>
+      
+      <nav id="main-nav" class="nav" aria-label="Navegación principal">
         <a href="#inicio">Inicio</a>
         <a href="#sobre-mi">Sobre mí</a>
         <a href="#habilidades">Habilidades</a>
@@ -28,11 +37,11 @@
         <a href="#testimonios">Testimonios</a>
         <a href="#contacto">Contacto</a>
       </nav>
+      
       <div class="controls">
         <button id="theme-toggle" aria-label="Cambiar tema">🌓</button>
         <button class="cta" onclick="document.querySelector('#contacto').scrollIntoView({behavior:'smooth'})">Contactar</button>
       </div>
-      <button class="menu-toggle" aria-label="Abrir menú">☰</button>
     </div>
   </header>
 
@@ -67,7 +76,7 @@
           </div>
         </div>
         <div class="hero-image">
-          <img src="assets/perfil.png" alt="Carlos Andrés Jimenez" style="border-radius: 10px;" />
+          <img src="assets/imagdev.png" alt="Carlos Andrés Jimenez" style="border-radius: 10px;" />
         </div>
       </div>
       </a>
@@ -110,9 +119,9 @@
           </div>
           
           <div class="about-image">
-            <img src="assets/about-placeholder.jpg" alt="Carlos Andrés Jimenez - Desarrollador de Software" />
-              <div class="stat-num">20+</div>
-              <div class="stat-label">Proyectos personales</div>
+            <img src="assets/perfil.png" alt="Carlos Andrés Jimenez - Desarrollador de Software" />
+              <div class="stat-num"></div>
+              <div class="stat-label"></div>
             </div>
           </div>
         </div>
@@ -280,102 +289,49 @@
         <div class="projects-grid">
           <!-- Proyecto 1 -->
           <article class="project-card">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Sistema de Inventarios" />
+            <img src="assets/LCM.jpeg" alt="Sistema de Inventarios" />
             <div class="project-body">
-              <h3>Sistema de Inventarios</h3>
-              <p>Plataforma integral para la gestión de inventario, control de stock y generación de reportes en tiempo real.</p>
+              <h3>Ciprés | Bienestar & Marketing Educativo</h3>
+              <p>Ciprés es una empresa especializada en marketing educativo y bienestar escolar, que ayuda a instituciones educativas a mejorar su visibilidad, atraer familias y fortalecer sus programas de bienestar a través de estrategias digitales, diagnósticos y metodologías como Smartketing.</p>
               <div class="project-tags">
-                <span>Java</span>
-                <span>Spring Boot</span>
+                <span>JavaScript</span>
+                <span>PHP</span>  
                 <span>MySQL</span>
-                <span>Bootstrap</span>
+                <span>HTML / CSS</span>
+                <span>WordPress</span>
+                <span>Python</span>
               </div>
               <div class="project-actions">
-                <a href="#" class="btn-outline">
-                  <i class="fas fa-external-link-alt"></i> Ver demo
+                <a href="https://losmejorescolegios.com/co/" class="btn-outline">
+                  <i class="fas fa-external-link-alt"></i> Ver ahora 
                 </a>
-                <a href="#" class="btn">
-                  <i class="fab fa-github"></i> Código
-                </a>
+                
               </div>
             </div>
           </article>
 
           <!-- Proyecto 2 -->
           <article class="project-card">
-            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Intranet Corporativa" />
+            <img src="assets/Pinup.jpeg" alt="Intranet Corporativa" />
             <div class="project-body">
-              <h3>Intranet Corporativa</h3>
-              <p>Sistema de gestión interna con módulos de recursos humanos, comunicaciones y gestión documental.</p>
+              <h3>Pinup </h3>
+              <p>Desarrollo de una plataforma completa compuesta por una página web responsive y una aplicación móvil, integradas bajo la misma arquitectura. Incluyó diseño de interfaz, creación de componentes, conexión con servicios en la nube y optimización del rendimiento para ofrecer una experiencia fluida tanto en navegador como en dispositivos móviles.</p>
               <div class="project-tags">
                 <span>PHP</span>
-                <span>WordPress</span>
                 <span>JavaScript</span>
-                <span>MySQL</span>
+                <span>SQL LITE</span>
+                <span>HTML / CSS</span>
               </div>
               <div class="project-actions">
-                <a href="#" class="btn-outline">
-                  <i class="fas fa-external-link-alt"></i> Ver demo
+                <a href="https://pinup-7bs6.onrender.com/" class="btn-outline">
+                  <i class="fas fa-external-link-alt"></i> Ver ahora
                 </a>
-                <a href="#" class="btn">
-                  <i class="fab fa-github"></i> Código
-                </a>
+                
               </div>
             </div>
           </article>
 
-          <!-- Proyecto 3 -->
-          <article class="project-card">
-            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Plataforma Educativa" />
-            <div class="project-body">
-              <h3>Plataforma Educativa</h3>
-              <p>Solución e-learning con aulas virtuales, gestión de cursos y seguimiento de estudiantes.</p>
-              <div class="project-tags">
-                <span>Node.js</span>
-                <span>React</span>
-                <span>MongoDB</span>
-                <span>Express</span>
-              </div>
-              <div class="project-actions">
-                <a href="#" class="btn-outline">
-                  <i class="fas fa-external-link-alt"></i> Ver demo
-                </a>
-                <a href="#" class="btn">
-                  <i class="fab fa-github"></i> Código
-                </a>
-              </div>
-            </div>
-          </article>
 
-          <!-- Proyecto 4 -->
-          <article class="project-card">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="App Móvil de Tareas" />
-            <div class="project-body">
-              <h3>App de Gestión de Tareas</h3>
-              <p>Aplicación móvil para gestión de tareas con recordatorios, categorías y sincronización en la nube.</p>
-              <div class="project-tags">
-                <span>React Native</span>
-                <span>Firebase</span>
-                <span>Redux</span>
-                <span>Expo</span>
-              </div>
-              <div class="project-actions">
-                <a href="#" class="btn-outline">
-                  <i class="fas fa-external-link-alt"></i> Ver demo
-                </a>
-                <a href="#" class="btn">
-                  <i class="fab fa-github"></i> Código
-                </a>
-              </div>
-            </div>
-          </article>
-        </div>
-        
-        <div class="text-center" style="margin-top: 4rem;">
-          <a href="#" class="btn" style="padding: 0.8rem 2rem; font-size: 1rem;">
-            <i class="fas fa-eye"></i> Ver todos los proyectos
-          </a>
-        </div>
       </div>
     </section>
 
