@@ -1,85 +1,146 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Andrés J. | 3D Visualization</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-</head>
-<body class="dark-theme">
-  
-  <div id="custom-cursor"></div>
+/* style.css - Versión 2026 */
+:root {
+  --bg: #050505;
+  --accent: #ccff00; /* Verde neón / Cyber Lime */
+  --text: #ffffff;
+  --subtext: #888888;
+  --glass: rgba(255, 255, 255, 0.05);
+  --font-main: 'Inter', sans-serif;
+  --font-heading: 'Syne', sans-serif;
+}
 
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="logo">ANDRÉS<span>J.</span></div>
-      <nav id="main-nav" class="nav">
-        <a href="#inicio">Inicio</a>
-        <a href="#portafolio">Proyectos</a>
-        <a href="#sobre-mi">Sobre mí</a>
-        <a href="#contacto" class="nav-cta">Contacto</a>
-      </nav>
-    </div>
-  </header>
+* { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
 
-  <main>
-    <section id="inicio" class="hero">
-      <div class="hero-visual">
-        <div class="hero-overlay"></div>
-      </div>
-      <div class="container hero-content">
-        <h1 data-aos="fade-up">PURE<br><span class="text-outline">VISUALS</span></h1>
-        <p data-aos="fade-up" data-aos-delay="200">Visualización arquitectónica fotorrealista de próxima generación.</p>
-        <div class="hero-btns" data-aos="fade-up" data-aos-delay="400">
-          <a href="#portafolio" class="btn-primary">Explorar Galería</a>
-        </div>
-      </div>
-    </section>
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
 
-    <div class="marquee-section">
-      <div class="marquee-wrapper">
-        <div class="marquee-content">
-          <img src="assets/render1.jpg" alt="Render">
-          <img src="assets/render2.jpg" alt="Render">
-          <img src="assets/render3.jpg" alt="Render">
-          <img src="assets/render4.jpg" alt="Render">
-          <img src="assets/render1.jpg" alt="Render">
-          <img src="assets/render2.jpg" alt="Render">
-        </div>
-      </div>
-    </div>
+/* Cursor Personalizado */
+#custom-cursor {
+  width: 20px;
+  height: 20px;
+  background: var(--accent);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transition: transform 0.1s ease;
+}
 
-    <section id="portafolio" class="projects-section">
-      <div class="container">
-        <h2 class="section-title">Proyectos <span>Destacados</span></h2>
-        <div class="projects-grid">
-          <div class="project-card" data-aos="zoom-in-up">
-            <div class="project-img">
-              <img src="assets/tu-render.jpg" alt="Proyecto">
-              <div class="project-info-overlay">
-                <h3>Residencia Moderna</h3>
-                <p>3ds Max + Corona Renderer</p>
-              </div>
-            </div>
-          </div>
-          </div>
-      </div>
-    </section>
-  </main>
+/* Header Estilo Premium */
+.site-header {
+  padding: 2rem 0;
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+}
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+}
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+}
+.logo span { color: var(--accent); }
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 1000, once: true });
-    
-    // Lógica del cursor 2026
-    const cursor = document.getElementById('custom-cursor');
-    document.addEventListener('mousemove', e => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-    });
-  </script>
-</body>
-</html>
+.nav a {
+  color: var(--text);
+  text-decoration: none;
+  margin-left: 2rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+/* HERO SECTION */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+.hero-content h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(4rem, 15vw, 10rem);
+  line-height: 0.8;
+  margin-bottom: 1rem;
+}
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text);
+}
+.btn-primary {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: var(--accent);
+  color: #000;
+  text-decoration: none;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-top: 2rem;
+  border-radius: 50px;
+  transition: 0.3s ease;
+}
+.btn-primary:hover { transform: scale(1.1); box-shadow: 0 0 30px var(--accent); }
+
+/* MARQUEE (Fotos que corren) */
+.marquee-section {
+  background: #111;
+  padding: 4rem 0;
+  border-top: 1px solid #222;
+  border-bottom: 1px solid #222;
+}
+.marquee-wrapper {
+  overflow: hidden;
+  display: flex;
+}
+.marquee-content {
+  display: flex;
+  animation: scroll 30s linear infinite;
+}
+.marquee-content img {
+  height: 350px;
+  margin-right: 2rem;
+  border-radius: 10px;
+  object-fit: cover;
+  filter: grayscale(1);
+  transition: 0.5s;
+}
+.marquee-content img:hover { filter: grayscale(0); transform: scale(1.05); }
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* GRID DE PROYECTOS */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  padding: 4rem 5%;
+}
+.project-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  background: var(--glass);
+}
+.project-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.8s ease;
+}
+.project-card:hover .project-img img { transform: scale(1.1); }
